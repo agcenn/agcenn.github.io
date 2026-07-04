@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ALEX GUAN YAN CEN CEN 的个人主页，现就读于西安交通大学。"
+    />
+    <meta name="theme-color" content="#4051b5" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ALEX GUAN YAN CEN CEN" />
+    <meta
+      property="og:description"
+      content="Student at Xi'an Jiaotong University."
+    />
+    <title>主页 - ALEX GUAN YAN CEN CEN</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" data-i18n="skipToContent"
+      >跳转至内容</a
+    >
+
+    <header class="top-header">
+      <div class="header-main">
+        <div class="header-inner">
+          <button
+            class="icon-button menu-button"
+            type="button"
+            aria-label="打开导航"
+            aria-expanded="false"
+            aria-controls="mobile-drawer"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+          </button>
+
+          <a class="site-identity" href="#home">
+            <span class="site-avatar" aria-hidden="true">AG</span>
+            <span class="site-title">ALEX GUAN YAN CEN CEN</span>
+          </a>
+
+          <div class="header-tools">
+            <div class="language-menu">
+              <button
+                class="icon-button language-button"
+                type="button"
+                aria-label="选择语言"
+                aria-expanded="false"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"></path>
+                </svg>
+              </button>
+              <div class="language-panel" hidden>
+                <p data-i18n="languageLabel">语言</p>
+                <button type="button" data-lang="zh" aria-pressed="true">
+                  中文
+                </button>
+                <button type="button" data-lang="en" aria-pressed="false">
+                  English
+                </button>
+                <button type="button" data-lang="es" aria-pressed="false">
+                  Español
+                </button>
+              </div>
+            </div>
+
+            <button
+              class="icon-button theme-button"
+              type="button"
+              aria-label="切换深色模式"
+              aria-pressed="false"
+            >
+              <svg class="light-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3V1.5M12 22.5V21M3 12H1.5M22.5 12H21M5.64 5.64 4.58 4.58M19.42 19.42l-1.06-1.06M18.36 5.64l1.06-1.06M4.58 19.42l1.06-1.06"></path>
+                <circle cx="12" cy="12" r="4.5"></circle>
+              </svg>
+              <svg class="dark-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="header-tabs" aria-label="主导航">
+        <div class="tabs-inner">
+          <a class="active" href="#home" data-i18n="navHome">主页</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="drawer-overlay" hidden></div>
+    <aside id="mobile-drawer" class="mobile-drawer" aria-label="移动导航">
+      <div class="drawer-profile">
+        <span class="drawer-avatar" aria-hidden="true">AG</span>
+        <strong>ALEX GUAN YAN CEN CEN</strong>
+      </div>
+      <nav aria-label="移动页面导航">
+        <a class="drawer-home" href="#home" data-i18n="navHome">主页</a>
+        <p data-i18n="tocTitle">目录</p>
+        <a href="#about" data-i18n="navAbout">个人简介</a>
+        <a href="#education" data-i18n="navEducation">教育经历</a>
+      </nav>
+    </aside>
+
+    <div class="page-layout">
+      <aside class="left-sidebar" aria-label="页面导航">
+        <nav class="primary-sidebar">
+          <a class="sidebar-home active" href="#home" data-i18n="navHome"
+            >主页</a
+          >
+          <div class="sidebar-section">
+            <p data-i18n="tocTitle">目录</p>
+            <a href="#about" data-i18n="navAbout">个人简介</a>
+            <a href="#education" data-i18n="navEducation">教育经历</a>
+          </div>
+        </nav>
+      </aside>
+
+      <main id="main-content" class="article">
+        <article id="home">
+          <h1 data-i18n="homeTitle">主页</h1>
+
+          <section id="about" class="article-section">
+            <h2>
+              <span data-i18n="aboutTitle">个人简介</span>
+              <a class="heading-anchor" href="#about" aria-label="个人简介">¶</a>
+            </h2>
+            <p data-i18n="aboutBody">
+              ALEX GUAN YAN CEN CEN，现就读于西安交通大学。
+            </p>
+          </section>
+
+          <section id="education" class="article-section">
+            <h2>
+              <span data-i18n="educationTitle">教育经历</span>
+              <a class="heading-anchor" href="#education" aria-label="教育经历"
+                >¶</a
+              >
+            </h2>
+
+            <h3 data-i18n="universityHeading">大学</h3>
+            <ul>
+              <li>
+                <strong data-i18n="xjtuName">西安交通大学</strong>
+                <span data-i18n="currentStudent">，在读</span>
+              </li>
+            </ul>
+
+            <h3 data-i18n="highSchoolHeading">高中</h3>
+            <ul>
+              <li>
+                <strong>Colegio de La Salle Cartagena</strong>
+                <span data-i18n="graduated">，毕业</span>
+              </li>
+            </ul>
+          </section>
+
+        </article>
+      </main>
+
+      <aside class="right-sidebar" aria-label="本页目录">
+        <nav class="toc">
+          <p data-i18n="tocTitle">目录</p>
+          <a class="toc-link active" href="#about" data-i18n="navAbout"
+            >个人简介</a
+          >
+          <a class="toc-link" href="#education" data-i18n="navEducation"
+            >教育经历</a
+          >
+        </nav>
+      </aside>
+    </div>
+
+    <a class="back-to-top" href="#home">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="m6 14 6-6 6 6"></path>
+      </svg>
+      <span data-i18n="backToTop">回到页面顶部</span>
+    </a>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© <span id="current-year">2026</span> ALEX GUAN YAN CEN CEN</span>
+      </div>
+    </footer>
+
+  </body>
+</html>
