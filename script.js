@@ -6,10 +6,6 @@ const languageButton = document.querySelector(".language-button");
 const languagePanel = document.querySelector(".language-panel");
 const languageButtons = document.querySelectorAll("[data-lang]");
 const themeButton = document.querySelector(".theme-button");
-const searchButton = document.querySelector(".search-button");
-const searchDialog = document.querySelector(".search-dialog");
-const searchInput = document.querySelector("#site-search");
-const searchResults = document.querySelector(".search-results");
 
 const translations = {
   zh: {
@@ -34,11 +30,8 @@ const translations = {
     lastUpdated: "2026年7月4日",
     backToTop: "回到页面顶部",
     footerText: "个人主页 · 托管于 GitHub Pages",
-    searchTitle: "搜索",
-    searchPlaceholder: "搜索",
-    searchHint: "输入“个人简介”或“教育经历”。",
-    noResults: "没有找到匹配内容。",
   },
+
   en: {
     pageTitle: "Home - ALEX GUAN YAN CEN CEN @ XJTU",
     description:
@@ -62,11 +55,8 @@ const translations = {
     lastUpdated: "July 4, 2026",
     backToTop: "Back to top",
     footerText: "Personal website · Hosted on GitHub Pages",
-    searchTitle: "Search",
-    searchPlaceholder: "Search",
-    searchHint: 'Try “About me” or “Education”.',
-    noResults: "No matching content found.",
   },
+
   es: {
     pageTitle: "Inicio - ALEX GUAN YAN CEN CEN @ XJTU",
     description:
@@ -90,10 +80,6 @@ const translations = {
     lastUpdated: "4 de julio de 2026",
     backToTop: "Volver arriba",
     footerText: "Sitio web personal · Alojado en GitHub Pages",
-    searchTitle: "Buscar",
-    searchPlaceholder: "Buscar",
-    searchHint: "Prueba con «Sobre mí» o «Educación».",
-    noResults: "No se encontró contenido.",
   },
 };
 
@@ -118,8 +104,7 @@ function detectBrowserLanguage() {
 
 localStorage.removeItem("language");
 
-const preferredLanguage =
-  localStorage.getItem("preferredLanguage");
+const preferredLanguage = localStorage.getItem("preferredLanguage");
 
 let currentLanguage =
   preferredLanguage && translations[preferredLanguage]
@@ -133,9 +118,11 @@ function setTheme(isDark) {
     "aria-label",
     isDark ? "切换浅色模式" : "切换深色模式",
   );
+
   document
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", isDark ? "#1e2129" : "#4051b5");
+
   localStorage.setItem("theme", isDark ? "dark" : "light");
 }
 
@@ -145,19 +132,19 @@ function setLanguage(language, persistPreference = false) {
 
   document.documentElement.lang =
     currentLanguage === "zh" ? "zh-CN" : currentLanguage;
+
   document.title = copy.pageTitle;
+
   document
     .querySelector('meta[name="description"]')
     .setAttribute("content", copy.description);
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
-    if (copy[key]) element.textContent = copy[key];
-  });
 
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-    const key = element.dataset.i18nPlaceholder;
-    if (copy[key]) element.setAttribute("placeholder", copy[key]);
+    if (copy[key]) {
+      element.textContent = copy[key];
+    }
   });
 
   languageButtons.forEach((button) => {
@@ -168,9 +155,8 @@ function setLanguage(language, persistPreference = false) {
   });
 
   if (persistPreference) {
-  localStorage.setItem("preferredLanguage", currentLanguage);
-}
-  renderSearchResults(searchInput.value);
+    localStorage.setItem("preferredLanguage", currentLanguage);
+  }
 }
 
 function toggleDrawer(open) {
@@ -184,47 +170,8 @@ function toggleDrawer(open) {
   });
 }
 
-function renderSearchResults(query) {
-  const term = query.trim().toLocaleLowerCase();
-  searchResults.replaceChildren();
-  if (!term) return;
-
-  const copy = translations[currentLanguage];
-  const pages = [
-    {
-      title: copy.aboutTitle,
-      text: copy.aboutBody,
-      href: "#about",
-    },
-    {
-      title: copy.educationTitle,
-      text: `${copy.xjtuName} Colegio de La Salle Cartagena`,
-      href: "#education",
-    },
-  ];
-  const matches = pages.filter((page) =>
-    `${page.title} ${page.text}`.toLocaleLowerCase().includes(term),
-  );
-
-  if (!matches.length) {
-    const message = document.createElement("p");
-    message.className = "search-hint";
-    message.textContent = copy.noResults;
-    searchResults.append(message);
-    return;
-  }
-
-  matches.forEach((page) => {
-    const result = document.createElement("a");
-    result.className = "search-result";
-    result.href = page.href;
-    result.textContent = page.title;
-    result.addEventListener("click", () => searchDialog.close());
-    searchResults.append(result);
-  });
-}
-
 const savedTheme = localStorage.getItem("theme");
+
 setTheme(savedTheme ? savedTheme === "dark" : false);
 setLanguage(currentLanguage);
 
@@ -236,13 +183,20 @@ menuButton.addEventListener("click", () => {
   toggleDrawer(!mobileDrawer.classList.contains("open"));
 });
 
-drawerOverlay.addEventListener("click", () => toggleDrawer(false));
+drawerOverlay.addEventListener("click", () => {
+  toggleDrawer(false);
+});
+
 mobileDrawer.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => toggleDrawer(false));
+  link.addEventListener("click", () => {
+    toggleDrawer(false);
+  });
 });
 
 languageButton.addEventListener("click", () => {
-  const isOpen = languageButton.getAttribute("aria-expanded") === "true";
+  const isOpen =
+    languageButton.getAttribute("aria-expanded") === "true";
+
   languageButton.setAttribute("aria-expanded", String(!isOpen));
   languagePanel.hidden = isOpen;
 });
@@ -262,21 +216,19 @@ document.addEventListener("click", (event) => {
   }
 });
 
-searchButton.addEventListener("click", () => {
-  searchDialog.showModal();
-  searchInput.focus();
-});
+const articleSections =
+  document.querySelectorAll(".article-section");
 
-searchInput.addEventListener("input", () => {
-  renderSearchResults(searchInput.value);
-});
+const tocLinks =
+  document.querySelectorAll(".toc-link");
 
-const articleSections = document.querySelectorAll(".article-section");
-const tocLinks = document.querySelectorAll(".toc-link");
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
+      if (!entry.isIntersecting) {
+        return;
+      }
+
       tocLinks.forEach((link) => {
         link.classList.toggle(
           "active",
@@ -285,9 +237,14 @@ const sectionObserver = new IntersectionObserver(
       });
     });
   },
-  { rootMargin: "-25% 0px -65% 0px" },
+  {
+    rootMargin: "-25% 0px -65% 0px",
+  },
 );
 
-articleSections.forEach((section) => sectionObserver.observe(section));
+articleSections.forEach((section) => {
+  sectionObserver.observe(section);
+});
+
 document.getElementById("current-year").textContent =
   new Date().getFullYear();
