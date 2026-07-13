@@ -6,11 +6,16 @@ const languageButton = document.querySelector(".language-button");
 const languagePanel = document.querySelector(".language-panel");
 const languageButtons = document.querySelectorAll("[data-lang]");
 const themeButton = document.querySelector(".theme-button");
+const visitorCountElement = document.querySelector("#visitor-count");
+
+const COUNTER_API =
+  "https://visitor-counter-api.cencenalexguanyang.workers.dev/";
 
 const translations = {
   zh: {
     pageTitle: "主页 - ALEX GUAN YAN CEN CEN @ XJTU",
-    description: "ALEX GUAN YAN CEN CEN 的个人主页，现就读于西安交通大学。",
+    description:
+      "ALEX GUAN YAN CEN CEN 的个人主页，现就读于西安交通大学。",
     skipToContent: "跳转至内容",
     languageLabel: "语言",
     navHome: "主页",
@@ -30,6 +35,7 @@ const translations = {
     lastUpdated: "2026年7月4日",
     backToTop: "回到页面顶部",
     footerText: "个人主页 · 托管于 GitHub Pages",
+    visitorCountLabel: "历史访问人数：",
   },
 
   en: {
@@ -55,6 +61,7 @@ const translations = {
     lastUpdated: "July 4, 2026",
     backToTop: "Back to top",
     footerText: "Personal website · Hosted on GitHub Pages",
+    visitorCountLabel: "Total visitors: ",
   },
 
   es: {
@@ -79,13 +86,16 @@ const translations = {
     graduated: ", graduado",
     lastUpdated: "4 de julio de 2026",
     backToTop: "Volver arriba",
-    footerText: "Sitio web personal · Alojado en GitHub Pages",
+    footerText:
+      "Sitio web personal · Alojado en GitHub Pages",
+    visitorCountLabel: "Visitantes totales: ",
   },
 };
 
 function detectBrowserLanguage() {
   const browserLanguages =
-    Array.isArray(navigator.languages) && navigator.languages.length
+    Array.isArray(navigator.languages) &&
+    navigator.languages.length
       ? navigator.languages
       : [navigator.language];
 
@@ -104,7 +114,8 @@ function detectBrowserLanguage() {
 
 localStorage.removeItem("language");
 
-const preferredLanguage = localStorage.getItem("preferredLanguage");
+const preferredLanguage =
+  localStorage.getItem("preferredLanguage");
 
 let currentLanguage =
   preferredLanguage && translations[preferredLanguage]
@@ -113,25 +124,46 @@ let currentLanguage =
 
 function setTheme(isDark) {
   body.classList.toggle("dark", isDark);
-  themeButton.setAttribute("aria-pressed", String(isDark));
+
+  themeButton.setAttribute(
+    "aria-pressed",
+    String(isDark),
+  );
+
   themeButton.setAttribute(
     "aria-label",
-    isDark ? "切换浅色模式" : "切换深色模式",
+    isDark
+      ? "切换浅色模式"
+      : "切换深色模式",
   );
 
   document
     .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", isDark ? "#1e2129" : "#4051b5");
+    .setAttribute(
+      "content",
+      isDark ? "#1e2129" : "#4051b5",
+    );
 
-  localStorage.setItem("theme", isDark ? "dark" : "light");
+  localStorage.setItem(
+    "theme",
+    isDark ? "dark" : "light",
+  );
 }
 
-function setLanguage(language, persistPreference = false) {
-  currentLanguage = translations[language] ? language : "en";
+function setLanguage(
+  language,
+  persistPreference = false,
+) {
+  currentLanguage = translations[language]
+    ? language
+    : "en";
+
   const copy = translations[currentLanguage];
 
   document.documentElement.lang =
-    currentLanguage === "zh" ? "zh-CN" : currentLanguage;
+    currentLanguage === "zh"
+      ? "zh-CN"
+      : currentLanguage;
 
   document.title = copy.pageTitle;
 
@@ -139,112 +171,208 @@ function setLanguage(language, persistPreference = false) {
     .querySelector('meta[name="description"]')
     .setAttribute("content", copy.description);
 
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const key = element.dataset.i18n;
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach((element) => {
+      const key = element.dataset.i18n;
 
-    if (copy[key]) {
-      element.textContent = copy[key];
-    }
-  });
+      if (copy[key]) {
+        element.textContent = copy[key];
+      }
+    });
 
   languageButtons.forEach((button) => {
     button.setAttribute(
       "aria-pressed",
-      String(button.dataset.lang === currentLanguage),
+      String(
+        button.dataset.lang === currentLanguage,
+      ),
     );
   });
 
   if (persistPreference) {
-    localStorage.setItem("preferredLanguage", currentLanguage);
+    localStorage.setItem(
+      "preferredLanguage",
+      currentLanguage,
+    );
   }
 }
 
 function toggleDrawer(open) {
   mobileDrawer.classList.toggle("open", open);
   drawerOverlay.hidden = !open;
-  menuButton.setAttribute("aria-expanded", String(open));
+
+  menuButton.setAttribute(
+    "aria-expanded",
+    String(open),
+  );
+
   body.classList.toggle("drawer-open", open);
 
   requestAnimationFrame(() => {
-    drawerOverlay.classList.toggle("visible", open);
+    drawerOverlay.classList.toggle(
+      "visible",
+      open,
+    );
   });
 }
 
-const savedTheme = localStorage.getItem("theme");
+const savedTheme =
+  localStorage.getItem("theme");
 
-setTheme(savedTheme ? savedTheme === "dark" : false);
+setTheme(
+  savedTheme
+    ? savedTheme === "dark"
+    : false,
+);
+
 setLanguage(currentLanguage);
 
 themeButton.addEventListener("click", () => {
-  setTheme(!body.classList.contains("dark"));
+  setTheme(
+    !body.classList.contains("dark"),
+  );
 });
 
 menuButton.addEventListener("click", () => {
-  toggleDrawer(!mobileDrawer.classList.contains("open"));
+  toggleDrawer(
+    !mobileDrawer.classList.contains("open"),
+  );
 });
 
 drawerOverlay.addEventListener("click", () => {
   toggleDrawer(false);
 });
 
-mobileDrawer.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    toggleDrawer(false);
+mobileDrawer
+  .querySelectorAll("a")
+  .forEach((link) => {
+    link.addEventListener("click", () => {
+      toggleDrawer(false);
+    });
   });
-});
 
 languageButton.addEventListener("click", () => {
   const isOpen =
-    languageButton.getAttribute("aria-expanded") === "true";
+    languageButton.getAttribute(
+      "aria-expanded",
+    ) === "true";
 
-  languageButton.setAttribute("aria-expanded", String(!isOpen));
+  languageButton.setAttribute(
+    "aria-expanded",
+    String(!isOpen),
+  );
+
   languagePanel.hidden = isOpen;
 });
 
 languageButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    setLanguage(button.dataset.lang, true);
-    languageButton.setAttribute("aria-expanded", "false");
+    setLanguage(
+      button.dataset.lang,
+      true,
+    );
+
+    languageButton.setAttribute(
+      "aria-expanded",
+      "false",
+    );
+
     languagePanel.hidden = true;
   });
 });
 
 document.addEventListener("click", (event) => {
   if (!event.target.closest(".language-menu")) {
-    languageButton.setAttribute("aria-expanded", "false");
+    languageButton.setAttribute(
+      "aria-expanded",
+      "false",
+    );
+
     languagePanel.hidden = true;
   }
 });
 
 const articleSections =
-  document.querySelectorAll(".article-section");
+  document.querySelectorAll(
+    ".article-section",
+  );
 
 const tocLinks =
   document.querySelectorAll(".toc-link");
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
+const sectionObserver =
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
 
-      tocLinks.forEach((link) => {
-        link.classList.toggle(
-          "active",
-          link.getAttribute("href") === `#${entry.target.id}`,
-        );
+        tocLinks.forEach((link) => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") ===
+              `#${entry.target.id}`,
+          );
+        });
       });
-    });
-  },
-  {
-    rootMargin: "-25% 0px -65% 0px",
-  },
-);
+    },
+    {
+      rootMargin: "-25% 0px -65% 0px",
+    },
+  );
 
 articleSections.forEach((section) => {
   sectionObserver.observe(section);
 });
 
-document.getElementById("current-year").textContent =
-  new Date().getFullYear();
+document.getElementById(
+  "current-year",
+).textContent = new Date().getFullYear();
+
+async function loadVisitorCount() {
+  let visitorId =
+    localStorage.getItem("visitorId");
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+
+    localStorage.setItem(
+      "visitorId",
+      visitorId,
+    );
+  }
+
+  try {
+    const response = await fetch(
+      COUNTER_API,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          visitorId,
+        }),
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        "Failed to load visitor count",
+      );
+    }
+
+    const data = await response.json();
+
+    visitorCountElement.textContent =
+      String(data.total);
+  } catch (error) {
+    visitorCountElement.textContent = "--";
+  }
+}
+
+loadVisitorCount();
