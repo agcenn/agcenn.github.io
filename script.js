@@ -32,9 +32,7 @@ const translations = {
     currentStudent: "，在读",
     highSchoolHeading: "高中",
     graduated: "，毕业",
-    lastUpdated: "2026年7月4日",
     backToTop: "回到页面顶部",
-    footerText: "个人主页 · 托管于 GitHub Pages",
     visitorCountLabel: "历史访问人数：",
   },
 
@@ -58,9 +56,7 @@ const translations = {
     currentStudent: ", current student",
     highSchoolHeading: "High school",
     graduated: ", graduated",
-    lastUpdated: "July 4, 2026",
     backToTop: "Back to top",
-    footerText: "Personal website · Hosted on GitHub Pages",
     visitorCountLabel: "Total visitors: ",
   },
 
@@ -84,10 +80,7 @@ const translations = {
     currentStudent: ", estudiante actual",
     highSchoolHeading: "Bachillerato",
     graduated: ", graduado",
-    lastUpdated: "4 de julio de 2026",
     backToTop: "Volver arriba",
-    footerText:
-      "Sitio web personal · Alojado en GitHub Pages",
     visitorCountLabel: "Visitantes totales: ",
   },
 };
@@ -111,8 +104,6 @@ function detectBrowserLanguage() {
 
   return "en";
 }
-
-localStorage.removeItem("language");
 
 const preferredLanguage =
   localStorage.getItem("preferredLanguage");
