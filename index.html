@@ -20,8 +20,7 @@
     <title>主页 - ALEX GUAN YAN CEN CEN</title>
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
-
+    <link rel="stylesheet" href="styles.css?v=3" />
     <script src="script.js?v=3" defer></script>
   </head>
 
@@ -140,7 +139,11 @@
       </div>
 
       <nav aria-label="移动页面导航">
-        <a class="drawer-home" href="#home" data-i18n="navHome">
+        <a
+          class="drawer-home"
+          href="#home"
+          data-i18n="navHome"
+        >
           主页
         </a>
 
@@ -157,30 +160,6 @@
     </aside>
 
     <div class="page-layout">
-      <aside class="left-sidebar" aria-label="页面导航">
-        <nav class="primary-sidebar">
-          <a
-            class="sidebar-home active"
-            href="#home"
-            data-i18n="navHome"
-          >
-            主页
-          </a>
-
-          <div class="sidebar-section">
-            <p data-i18n="tocTitle">目录</p>
-
-            <a href="#about" data-i18n="navAbout">
-              个人简介
-            </a>
-
-            <a href="#education" data-i18n="navEducation">
-              教育经历
-            </a>
-          </div>
-        </nav>
-      </aside>
-
       <main id="main-content" class="article">
         <article id="home">
           <h1 data-i18n="homeTitle">主页</h1>
@@ -250,28 +229,6 @@
           </section>
         </article>
       </main>
-
-      <aside class="right-sidebar" aria-label="本页目录">
-        <nav class="toc">
-          <p data-i18n="tocTitle">目录</p>
-
-          <a
-            class="toc-link active"
-            href="#about"
-            data-i18n="navAbout"
-          >
-            个人简介
-          </a>
-
-          <a
-            class="toc-link"
-            href="#education"
-            data-i18n="navEducation"
-          >
-            教育经历
-          </a>
-        </nav>
-      </aside>
     </div>
 
     <a class="back-to-top" href="#home">
