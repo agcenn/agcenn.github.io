@@ -322,6 +322,49 @@ document.getElementById(
   "current-year",
 ).textContent = new Date().getFullYear();
 
+function wait(milliseconds) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, milliseconds);
+  });
+}
+
+async function requestVisitorCount(visitorId) {
+  const controller = new AbortController();
+
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, 8000);
+
+  try {
+    const response = await fetch(COUNTER_API, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        visitorId,
+      }),
+      cache: "no-store",
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    const total = Number(data.total);
+
+    if (!Number.isFinite(total) || total < 0) {
+      throw new Error("Invalid visitor count");
+    }
+
+    return total;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 async function loadVisitorCount() {
   let visitorId =
     localStorage.getItem("visitorId");
@@ -335,33 +378,36 @@ async function loadVisitorCount() {
     );
   }
 
-  try {
-    const response = await fetch(
-      COUNTER_API,
-      {
-        method: "POST",
+  const savedCount =
+    localStorage.getItem("lastVisitorCount");
 
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify({
-          visitorId,
-        }),
-      },
-    );
-
-    if (!response.ok) {
-      throw new Error(
-        "Failed to load visitor count",
-      );
-    }
-
-    const data = await response.json();
-
+  if (savedCount !== null) {
     visitorCountElement.textContent =
-      String(data.total);
-  } catch (error) {
+      savedCount;
+  }
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const total =
+        await requestVisitorCount(visitorId);
+
+      visitorCountElement.textContent =
+        String(total);
+
+      localStorage.setItem(
+        "lastVisitorCount",
+        String(total),
+      );
+
+      return;
+    } catch (error) {
+      if (attempt < 3) {
+        await wait(attempt * 1000);
+      }
+    }
+  }
+
+  if (savedCount === null) {
     visitorCountElement.textContent = "--";
   }
 }
