@@ -6,7 +6,8 @@ const languageButton = document.querySelector(".language-button");
 const languagePanel = document.querySelector(".language-panel");
 const languageButtons = document.querySelectorAll("[data-lang]");
 const themeButton = document.querySelector(".theme-button");
-const visitorCountElement = document.querySelector("#visitor-count");
+const visitorCountElement =
+  document.querySelector("#visitor-count");
 
 const COUNTER_API =
   "https://visitor-counter-api.cencenalexguanyang.workers.dev/";
@@ -284,40 +285,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-const articleSections =
-  document.querySelectorAll(
-    ".article-section",
-  );
-
-const tocLinks =
-  document.querySelectorAll(".toc-link");
-
-const sectionObserver =
-  new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        tocLinks.forEach((link) => {
-          link.classList.toggle(
-            "active",
-            link.getAttribute("href") ===
-              `#${entry.target.id}`,
-          );
-        });
-      });
-    },
-    {
-      rootMargin: "-25% 0px -65% 0px",
-    },
-  );
-
-articleSections.forEach((section) => {
-  sectionObserver.observe(section);
-});
-
 document.getElementById(
   "current-year",
 ).textContent = new Date().getFullYear();
@@ -338,25 +305,35 @@ async function requestVisitorCount(visitorId) {
   try {
     const response = await fetch(COUNTER_API, {
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify({
         visitorId,
       }),
+
       cache: "no-store",
       signal: controller.signal,
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
+      throw new Error(
+        `HTTP ${response.status}`,
+      );
     }
 
     const data = await response.json();
     const total = Number(data.total);
 
-    if (!Number.isFinite(total) || total < 0) {
-      throw new Error("Invalid visitor count");
+    if (
+      !Number.isFinite(total) ||
+      total < 0
+    ) {
+      throw new Error(
+        "Invalid visitor count",
+      );
     }
 
     return total;
@@ -379,17 +356,25 @@ async function loadVisitorCount() {
   }
 
   const savedCount =
-    localStorage.getItem("lastVisitorCount");
+    localStorage.getItem(
+      "lastVisitorCount",
+    );
 
   if (savedCount !== null) {
     visitorCountElement.textContent =
       savedCount;
   }
 
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (
+    let attempt = 1;
+    attempt <= 3;
+    attempt++
+  ) {
     try {
       const total =
-        await requestVisitorCount(visitorId);
+        await requestVisitorCount(
+          visitorId,
+        );
 
       visitorCountElement.textContent =
         String(total);
