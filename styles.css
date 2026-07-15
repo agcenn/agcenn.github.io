@@ -873,3 +873,16 @@ body {
     transition: none;
   }
 }
+
+/* 隐藏桌面端右侧目录 */
+.right-sidebar {
+  display: none;
+}
+
+/* 删除目录原来占用的空白位置 */
+@media (min-width: 961px) {
+  .page-layout {
+    width: min(100% - 2rem, 61rem);
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
