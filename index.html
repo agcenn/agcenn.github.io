@@ -2,26 +2,28 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
 
     <meta
       name="description"
-      content="ALEX GUAN YAN CEN CEN 的个人主页，现就读于西安交通大学。"
+      content="我是一名西安交通大学计算机科学与技术专业的大三学生。"
     />
 
     <meta name="theme-color" content="#4051b5" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="ALEX GUAN YAN CEN CEN" />
-    <meta
-      property="og:description"
-      content="Student at Xi'an Jiaotong University."
+
+    <title>主页 - ALEX GUAN YAN CEN CEN @ XJTU</title>
+
+    <link
+      rel="icon"
+      href="favicon.svg"
+      type="image/svg+xml"
     />
 
-    <title>主页 - ALEX GUAN YAN CEN CEN</title>
-
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=3" />
-    <script src="script.js?v=3" defer></script>
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <script src="script.js?v=4" defer></script>
   </head>
 
   <body>
@@ -49,8 +51,13 @@
           </button>
 
           <a class="site-identity" href="#home">
-            <span class="site-avatar" aria-hidden="true">AG</span>
-            <span class="site-title">ALEX GUAN YAN CEN CEN</span>
+            <span class="site-avatar" aria-hidden="true">
+              AG
+            </span>
+
+            <span class="site-title">
+              ALEX GUAN YAN CEN CEN
+            </span>
           </a>
 
           <div class="header-tools">
@@ -63,6 +70,7 @@
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="12" r="9"></circle>
+
                   <path
                     d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"
                   ></path>
@@ -70,17 +78,31 @@
               </button>
 
               <div class="language-panel" hidden>
-                <p data-i18n="languageLabel">语言</p>
+                <p data-i18n="languageLabel">
+                  语言
+                </p>
 
-                <button type="button" data-lang="zh" aria-pressed="true">
+                <button
+                  type="button"
+                  data-lang="zh"
+                  aria-pressed="true"
+                >
                   中文
                 </button>
 
-                <button type="button" data-lang="en" aria-pressed="false">
+                <button
+                  type="button"
+                  data-lang="en"
+                  aria-pressed="false"
+                >
                   English
                 </button>
 
-                <button type="button" data-lang="es" aria-pressed="false">
+                <button
+                  type="button"
+                  data-lang="es"
+                  aria-pressed="false"
+                >
                   Español
                 </button>
               </div>
@@ -100,6 +122,7 @@
                 <path
                   d="M12 3V1.5M12 22.5V21M3 12H1.5M22.5 12H21M5.64 5.64 4.58 4.58M19.42 19.42l-1.06-1.06M18.36 5.64l1.06-1.06M4.58 19.42l1.06-1.06"
                 ></path>
+
                 <circle cx="12" cy="12" r="4.5"></circle>
               </svg>
 
@@ -119,7 +142,11 @@
 
       <nav class="header-tabs" aria-label="主导航">
         <div class="tabs-inner">
-          <a class="active" href="#home" data-i18n="navHome">
+          <a
+            class="active"
+            href="#home"
+            data-i18n="navHome"
+          >
             主页
           </a>
         </div>
@@ -134,7 +161,10 @@
       aria-label="移动导航"
     >
       <div class="drawer-profile">
-        <span class="drawer-avatar" aria-hidden="true">AG</span>
+        <span class="drawer-avatar" aria-hidden="true">
+          AG
+        </span>
+
         <strong>ALEX GUAN YAN CEN CEN</strong>
       </div>
 
@@ -147,14 +177,8 @@
           主页
         </a>
 
-        <p data-i18n="tocTitle">目录</p>
-
         <a href="#about" data-i18n="navAbout">
           个人简介
-        </a>
-
-        <a href="#education" data-i18n="navEducation">
-          教育经历
         </a>
       </nav>
     </aside>
@@ -162,7 +186,7 @@
     <div class="page-layout">
       <main id="main-content" class="article">
         <article id="home">
-          <h1 data-i18n="homeTitle">主页</h1>
+          <h1>ALEX GUAN YAN CEN CEN</h1>
 
           <section id="about" class="article-section">
             <h2>
@@ -180,52 +204,8 @@
             </h2>
 
             <p data-i18n="aboutBody">
-              ALEX GUAN YAN CEN CEN，现就读于西安交通大学。
+              我是一名西安交通大学计算机科学与技术专业的大三学生。
             </p>
-          </section>
-
-          <section id="education" class="article-section">
-            <h2>
-              <span data-i18n="educationTitle">
-                教育经历
-              </span>
-
-              <a
-                class="heading-anchor"
-                href="#education"
-                aria-label="教育经历"
-              >
-                ¶
-              </a>
-            </h2>
-
-            <h3 data-i18n="universityHeading">大学</h3>
-
-            <ul>
-              <li>
-                <strong data-i18n="xjtuName">
-                  西安交通大学
-                </strong>
-
-                <span data-i18n="currentStudent">
-                  ，在读
-                </span>
-              </li>
-            </ul>
-
-            <h3 data-i18n="highSchoolHeading">高中</h3>
-
-            <ul>
-              <li>
-                <strong>
-                  Colegio de La Salle Cartagena
-                </strong>
-
-                <span data-i18n="graduated">
-                  ，毕业
-                </span>
-              </li>
-            </ul>
           </section>
         </article>
       </main>
