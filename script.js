@@ -14,52 +14,61 @@ const COUNTER_API =
 
 const translations = {
   zh: {
-    pageTitle: "主页 - ALEX GUAN YAN CEN CEN @ XJTU",
+    pageTitle:
+      "主页 - ALEX GUAN YAN CEN CEN @ XJTU",
+
     description:
       "ALEX GUAN YAN CEN CEN，西安交通大学计算机科学与技术专业大三学生。",
+
     skipToContent: "跳转至内容",
     languageLabel: "语言",
     navHome: "主页",
-    tocTitle: "目录",
     navAbout: "个人简介",
-    homeTitle: "主页",
     aboutTitle: "个人简介",
+
     aboutBody:
       "我是一名西安交通大学计算机科学与技术专业的大三学生。",
+
     backToTop: "回到页面顶部",
     visitorCountLabel: "历史访问人数：",
   },
 
   en: {
-    pageTitle: "Home - ALEX GUAN YAN CEN CEN @ XJTU",
+    pageTitle:
+      "Home - ALEX GUAN YAN CEN CEN @ XJTU",
+
     description:
-      "ALEX GUAN YAN CEN CEN, a third-year Computer Science student at Xi'an Jiaotong University.",
+      "ALEX GUAN YAN CEN CEN, a third-year Computer Science and Technology student at Xi'an Jiaotong University.",
+
     skipToContent: "Skip to content",
     languageLabel: "Language",
     navHome: "Home",
-    tocTitle: "Table of contents",
     navAbout: "About me",
-    homeTitle: "Home",
     aboutTitle: "About me",
+
     aboutBody:
-      "I am a third-year Computer Science student at Xi'an Jiaotong University.",
+      "I am a third-year Computer Science and Technology student at Xi'an Jiaotong University.",
+
     backToTop: "Back to top",
     visitorCountLabel: "Total visitors: ",
   },
 
   es: {
-    pageTitle: "Inicio - ALEX GUAN YAN CEN CEN @ XJTU",
+    pageTitle:
+      "Inicio - ALEX GUAN YAN CEN CEN @ XJTU",
+
     description:
-      "ALEX GUAN YAN CEN CEN, estudiante de tercer año de Ciencias de la Computación en la Universidad Xi'an Jiaotong.",
+      "ALEX GUAN YAN CEN CEN, estudiante de tercer año de Ciencia y Tecnología de la Computación en la Universidad Xi'an Jiaotong.",
+
     skipToContent: "Ir al contenido",
     languageLabel: "Idioma",
     navHome: "Inicio",
-    tocTitle: "Índice",
     navAbout: "Sobre mí",
-    homeTitle: "Inicio",
     aboutTitle: "Sobre mí",
+
     aboutBody:
-      "Soy estudiante de tercer año de Ciencias de la Computación en la Universidad Xi'an Jiaotong.",
+      "Soy estudiante de tercer año de Ciencia y Tecnología de la Computación en la Universidad Xi'an Jiaotong.",
+
     backToTop: "Volver arriba",
     visitorCountLabel: "Visitantes totales: ",
   },
